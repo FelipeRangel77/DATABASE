@@ -182,18 +182,31 @@ SELECT f.nome
 FROM funcionario AS f, trabalha_em AS t,projeto AS p
 WHERE f.codfunc = t.codfunc
 AND p.codprojeto = t.codprojeto
-AND p.nome = 'governança'
+AND p.nome = 'governança';
 
 -- Questão 2 !!!!!!!!!!!!!!!!!!!!!!!!!!
 --A) Insira o setor < S005,Contabilidade,1 andar> na tabela setor
 INSERT INTO setor(codsetor,nome,localizacao)
-	value('S005','Contabilidade','1 andar')
+	value('S005','Contabilidade','1 andar');
 
 --B) aloque o funcionario Gilmar Melo no projeto Governança com 300 horas
 INSERT INTO trabalha_em(codfunc,codprojeto,datainicio,datafim,dedicacao)
-	value ('f100', 'p40','03/02/2010','15/11/2010','100')
+	value ('f100', 'p40','03/02/2010','15/11/2010','100');
 
 --D) Atualize o salario de todos os funcionarios 10%
-UPDATE funcionario SET salario = salario * 1.10
+UPDATE funcionario SET salario = salario * 1.10;
 
 -- Questão 3 !!!!!!!!!!!!!!!!!!!!!!!
+--A) Recupere a quantidade de setores cadastrados
+SELECT COUNT(*) AS qtd_setores
+FROM setor;
+--B) Recupere o valor total de horas de projetos
+SELECT SUM(totalhoras) AS valor_total_horas
+FROM Projeto;
+--C) Recupe a média salarial dos funcionarios que trabalham no setor S003
+SELECT AVG(salario) AS media_salarial
+FROM funcionario
+WHERE codsetor = 'S003';
+--D) Recupere o valor do menor salário entre os funcionarios
+SELECT MIN (salario) AS menor_salario
+FROM funcionario;
